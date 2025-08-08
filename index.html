@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons)</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #botonMovil {
+            position: absolute;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.5s ease;
+        }
+        
+        #botonMovil:hover {
+            background-color: #45a049;
+        }
+
+        #rojo{
+            color: red;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+     <h1>Нажми</h1><h1 id="rojo" onclick="touched()">Кнопку!</h1>
+
+    <button  id="botonMovil"  >Catch me!</button>
+
+    <script>
+        const boton = document.getElementById('botonMovil');
+        const tiempoCambio = 10000; // 5000 milisegundos = 5 segundos
+        
+        function moverBoton() {
+            // Obtener dimensiones de la ventana y del botón
+            const anchoVentana = window.innerWidth;
+            const altoVentana = window.innerHeight;
+            const anchoBoton = boton.offsetWidth;
+            const altoBoton = boton.offsetHeight;
+            
+            // Calcular posición aleatoria asegurando que el botón no salga de la pantalla
+            const nuevaX = Math.random() * (anchoVentana - anchoBoton);
+            const nuevaY = Math.random() * (altoVentana - altoBoton);
+            
+            // Aplicar nueva posición
+            boton.style.left = nuevaX + 'px';
+            boton.style.top = nuevaY + 'px';
+            
+            // Cambiar color aleatorio
+            const colores = ['#4CAF50', '#f44336', '#2196F3', '#FF9800', '#9C27B0'];
+            const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+            boton.style.backgroundColor = colorAleatorio;
+        }
+        
+        // Mover el botón inmediatamente al cargar la página
+        moverBoton();
+        
+        // Configurar intervalo para mover el botón cada 5 segundos
+        setInterval(moverBoton, tiempoCambio);
+        
+        // Opcional: Mover también al pasar el mouse (para hacerlo más difícil)
+        boton.addEventListener('mouseover', function() {
+            moverBoton();
+        });
+
+        function touched() {
+            window.open("corazon.html")
+            window.close()
+        }
+
+
+    </script>
+</body>
+</html>
